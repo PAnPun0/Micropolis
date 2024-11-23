@@ -11,6 +11,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log('Auth state changed in App:', user);
       setCurrentUser(user);
     });
 
@@ -25,11 +26,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}>
-          <Route path="/login" element={<Login />} />
-          <Route index element={<RequireAuth><Home /></RequireAuth>} />
-          <Route path="/register" element={<Register />} />
-        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
       </Routes>
     </BrowserRouter>
   );

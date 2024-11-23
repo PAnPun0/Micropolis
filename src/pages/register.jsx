@@ -9,15 +9,14 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleInput = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
+    const { id, value } = e.target;
     setData({ ...data, [id]: value });
   };
 
   const handleAdd = async (e) => {
     e.preventDefault();
     const { name, lastName, email, password } = data;
-
+  
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const userId = userCredential.user.uid;
@@ -25,12 +24,12 @@ const Register = () => {
         name,
         lastName,
         email,
-        password,
         history: '/'
       });
-      console.log("setDoc called with data: ", { name, lastName, email, password });
+      console.log("setDoc called with data: ", { name, lastName, email });
     } catch (err) {
       console.log("неполучилось нубас", err);
+      alert("Ошибка регистрации: " + err.message);
     }
     navigate("/");
   };

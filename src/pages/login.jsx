@@ -15,11 +15,13 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // const user = userCredential.user;
+        console.log('User logged in:', userCredential.user);
         navigate("/");
       })
       .catch((error) => {
+        console.log('Login error:', error);
         setError(true);
+        alert("Ошибка входа: " + error.message);
       });
   };
 
