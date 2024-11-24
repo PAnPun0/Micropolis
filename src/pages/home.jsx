@@ -3,8 +3,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import PostForm from "./PostForm";
-import PostList from "./PostList";
+import Header from "./Header";
+import RutubeVideo from "./RutubeVideo";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -65,17 +66,67 @@ const Home = () => {
   if (user) {
     return (
       <>
-        <h1>МПИТ</h1>
-        {userData && (
-          <div>
-            <p>Email: {user.email}</p>
-            <p>Имя: {userData.name}</p>
-            <p>Фамилия: {userData.lastName}</p>
+        <div >
+          <div className="min-h-screen  items-center justify-center bg-center bg-cover bg-image w-full h-[250px] mb-8 md:h-[350px]"style={{ backgroundImage: 'url(src/assets/DarkBG.png)' }}>
+          
+          <Header/>
+            <img src="src/assets/whiteLogo.svg" alt="Logo" className="flex justify-items-center items-center mx-auto mb-10 w-96 h-96" />
+            <h1>МПИТ</h1>
+            
+            {userData && (
+              <div>
+                <p>Email: {user.email}</p>
+                <p>Имя: {userData.name}</p>
+                <p>Фамилия: {userData.lastName}</p>
+              </div>
+            )}
+            <button onClick={handleSignOut}>Sign out</button>
           </div>
-        )}
-        <button onClick={handleSignOut}>Sign out</button>
-        <PostForm />
-        <PostList />
+          <div className="p-10">
+            <p className="unbounded text-2xl text-center p-5">
+              Наш документальный сериал
+            </p>
+            <div className="flex md:flex-row flex-col 2xl:flex-row flex-col ml:flex-row flex-col">
+              <div className="py-3 px-6">
+                <RutubeVideo videoId="0e035288a84e0dfc566e378e8d1e76d8" />
+              </div>
+              <div className="py-3 px-6">
+                <RutubeVideo videoId="c8931ac11021827e8a27dd7b6578901a" />
+              </div>
+              <div className="py-3 px-6">
+                <RutubeVideo videoId="cc7015d5a9523089caef91b6bfa6952b" />
+              </div>
+            </div>
+            <div className="py-3 px-6">
+              <button className=" bg-main hover:bg-secondary text-white text-sm unbounded py-2 px-4 rounded focus:outline-none focus:shadow-outline"><a href="https://rutube.ru/channel/29381530/videos/">Посмотреть все</a></button>
+            </div>
+          </div>
+          <div>
+            <p className="unbounded text-2xl text-center p-5">
+              Наши проекты
+            </p>
+            <div className="flex justify-center items-center">
+              <div className="flex flex-wrap justify-center gap-4">
+                <div>
+                  <img src="src/assets/projects.png" alt="Project" className="w-72 h-96"/>
+                  <button className="bg-main hover:bg-secondary text-white text-sm unbounded py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 w-full">Подробнее о проекте</button>
+                </div>
+                <div>
+                  <img src="src/assets/projects.png" alt="Project" className="w-72 h-96"/>
+                  <button className="bg-main hover:bg-secondary text-white text-sm unbounded py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 w-full">Подробнее о проекте</button>
+                </div>
+                <div>
+                  <img src="src/assets/projects.png" alt="Project" className="w-72 h-96"/>
+                  <button className="bg-main hover:bg-secondary text-white text-sm unbounded py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 w-full">Подробнее о проекте</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+            
+          
+        </div>
+        
       </>
     );
   } else {

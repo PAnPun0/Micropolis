@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
-import Comment from "./Comments";
+import Comment from "./Comments"; // Убедитесь, что путь правильный
 
 const CommentList = ({ postId }) => {
   const [comments, setComments] = useState([]);

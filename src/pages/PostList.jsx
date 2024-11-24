@@ -1,19 +1,30 @@
 import { useEffect, useState } from "react";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
+import { db } from "../firebase";
 import Post from "./Post";
 
-const PostList = () => {
+const PostList = ({ searchQuery }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    let q;
+    if (searchQuery) {
+      q = query(
+        collection(db, "posts"),
+        where("title", ">=", searchQuery),
+        where("title", "<=", searchQuery + "\uf8ff"),
+        orderBy("title")
+      );
+    } else {
+      q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    }
+
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setPosts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [searchQuery]);
 
   return (
     <div>

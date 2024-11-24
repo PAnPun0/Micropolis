@@ -1,11 +1,23 @@
-import { useState } from "react";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 
 const Post = ({ post }) => {
+  const [authorData, setAuthorData] = useState(null);
   const [likes, setLikes] = useState(post.likes || []);
+
+  useEffect(() => {
+    const fetchAuthorData = async () => {
+      const authorDoc = await getDoc(doc(db, "users", post.author));
+      if (authorDoc.exists()) {
+        setAuthorData(authorDoc.data());
+      }
+    };
+
+    fetchAuthorData();
+  }, [post.author]);
 
   const handleLike = async () => {
     if (!auth.currentUser) return;
@@ -28,7 +40,7 @@ const Post = ({ post }) => {
     <div>
       <h2>{post.title}</h2>
       <p>{post.content}</p>
-      <p>Автор: {post.author}</p>
+      <p>Автор: {authorData ? `${authorData.name} ${authorData.lastName}` : "Загрузка..."}</p>
       <button onClick={handleLike}>
         {likes.includes(auth.currentUser?.uid) ? "Unlike" : "Like"} ({likes.length})
       </button>

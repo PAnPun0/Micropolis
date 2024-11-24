@@ -14,7 +14,7 @@ const PostForm = () => {
       await addDoc(collection(db, "posts"), {
         title,
         content,
-        author: auth.currentUser.email,
+        author: auth.currentUser.uid, // Сохраняем ID пользователя
         createdAt: serverTimestamp(),
         likes: []
       });

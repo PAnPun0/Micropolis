@@ -13,7 +13,7 @@ const CommentForm = ({ postId }) => {
       await addDoc(collection(db, "comments"), {
         postId,
         content,
-        author: auth.currentUser.email,
+        author: auth.currentUser.uid, // Сохраняем ID пользователя
         createdAt: serverTimestamp()
       });
       setContent("");

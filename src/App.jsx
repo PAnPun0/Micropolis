@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import './App.css';
+
+import './assets/css/Global.css';
 import Login from './pages/login';
 import Home from './pages/home';
 import Register from './pages/register';
 import { auth } from './firebase';
+import Forum from './pages/forum';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -29,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path="/forum" element={<Forum/>} />
       </Routes>
     </BrowserRouter>
   );
