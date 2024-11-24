@@ -71,17 +71,19 @@ const Home = () => {
           
           <Header/>
             <img src="src/assets/whiteLogo.svg" alt="Logo" className="flex justify-items-center items-center mx-auto mb-10 w-96 h-96" />
-            <h1>МПИТ</h1>
             
-            {userData && (
-              <div>
-                <p>Email: {user.email}</p>
-                <p>Имя: {userData.name}</p>
-                <p>Фамилия: {userData.lastName}</p>
+            
+            
+          </div>
+          {userData && (
+              <div className="mx-auto text-center">
+                <p className="unbounded">Здравствуйте! {userData.name} {userData.lastName}</p>
+                
               </div>
             )}
-            <button onClick={handleSignOut}>Sign out</button>
-          </div>
+            <div className="flex justify-center">
+              <button onClick={handleSignOut} className="text-center mx-auto  top-1/2 left-1/2">Sign out</button>
+            </div>
           <div className="p-10">
             <p className="unbounded text-2xl text-center p-5">
               Наш документальный сериал
@@ -105,7 +107,7 @@ const Home = () => {
             <p className="unbounded text-2xl text-center p-5">
               Наши проекты
             </p>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center pb-20">
               <div className="flex flex-wrap justify-center gap-4">
                 <div>
                   <img src="src/assets/projects.png" alt="Project" className="w-72 h-96"/>
@@ -121,6 +123,19 @@ const Home = () => {
                 </div>
               </div>
             </div>
+            <footer className="bg-bruh text-white pt-4">
+              <div className="container mx-auto text-center text-sm">
+                <p className="unbounded">&copy; {new Date().getFullYear()} Микрополис. Все права защищены.</p>
+                <p className="unbounded"><a href="https://www.youtube.com/channel/UC2e2xqtFKiTjr1jbrpDk" >Youtube</a></p>
+                <p className="unbounded"><a href="https://www.youtube.com/channel/UC2e2xqtFKiTjr1jbrpDk">RuTube</a></p>
+                <p className="unbounded"><a href="https://www.youtube.com/channel/UC2e2xqtFKiTjr1jbrpDk">Telegram</a></p>
+                <p className="unbounded"><a href="https://www.youtube.com/channel/UC2e2xqtFKiTjr1jbrpDk">VK</a></p>
+                <p className="pt-4 unbounded">Контакты:</p>
+                <p className="pt-4 unbounded">Телефон: +7 (985) 435-35-93</p>
+                <p className="pt-4 unbounded">Почта: anofutureindustry@gmail.com</p>
+                <img src="src/assets/industry.png" alt="Logo" className="pt-4  w-48 h-15" />
+              </div>
+            </footer>
 
           </div>
             

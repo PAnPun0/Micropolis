@@ -26,19 +26,26 @@ const PostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="space-y-4">
       <input
         type="text"
-        placeholder="Заголовок"
+        placeholder="Вопрос"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <textarea
-        placeholder="Содержание"
+        placeholder="Описание"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        className="border border-gray-300 rounded-lg px-4 py-2 h-32 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <button type="submit">Добавить пост</button>
+      <button
+        type="submit"
+        className="bg-main text-white px-4 py-2 rounded-lg hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        Спросить
+      </button>
     </form>
   );
 };

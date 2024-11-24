@@ -6,6 +6,10 @@
     font-family: Unbounded;
     src: url(src/font/Unbounded-Semibold.ttf);
 }
+@font-face {
+    font-family: Lato;
+    src: url(src/font/Lato-Semibold.ttf);
+}
 
 .unbounded {
     font-family: Unbounded;

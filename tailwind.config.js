@@ -9,6 +9,7 @@ export default {
       colors: {
         main: '#7A0114',
         secondary: '#CC001E',
+        bruh:"#313131",
       }
       
     },

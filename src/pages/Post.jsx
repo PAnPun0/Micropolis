@@ -38,11 +38,11 @@ const Post = ({ post }) => {
 
   return (
     <div>
-      <h2>{post.title}</h2>
-      <p>{post.content}</p>
+      <h2>Вопрос: {post.title}</h2>
+      <p>Описание:{post.content}</p>
       <p>Автор: {authorData ? `${authorData.name} ${authorData.lastName}` : "Загрузка..."}</p>
       <button onClick={handleLike}>
-        {likes.includes(auth.currentUser?.uid) ? "Unlike" : "Like"} ({likes.length})
+        {likes.includes(auth.currentUser?.uid) ? <img src="src/assets/filledheart.png" alt="" className="w-6 h-7"/> : <img src="src/assets/heart.png" alt="" className="w-6 h-7"/>} ({likes.length})
       </button>
       <CommentForm postId={post.id} />
       <CommentList postId={post.id} />
